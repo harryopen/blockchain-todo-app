@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { addTodo, getTodos } from "./web3/contract";
+import { addTodo, getTodos, toggleTodos } from "./web3/contract";
 import { connectWallet, disconnectWallet } from "./web3/wallet";
 
 import Header from "./components/Header";
@@ -45,7 +45,6 @@ const App = () => {
         text,
         completed: completed[i],
       }));
-      
       setTodos(formatted);
     } catch (error) {
       console.error("Failed to load todos:", error);
@@ -67,9 +66,16 @@ const App = () => {
     }
   };
 
-  const handleToggle = (index) => {
-    // Currently no smart contract toggle feature, but could be added here
-    console.log(`Toggle functionality not implemented yet. Index: ${index}`);
+  const handleToggle = async (index) => {
+    setLoading(true);
+    try {
+      await toggleTodos(index);
+      await loadTodos();
+    } catch (error) {
+      console.error("Failed to toggle todo:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Auto connect if already connected (in an ideal app, you'd check ethereum.selectedAddress)
