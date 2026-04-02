@@ -29,3 +29,10 @@ export const getTodos = async () => {
   const contract = await getContract();
   return await contract.getTodos();
 };
+
+export const toggleTodos = async (index)=>{
+  const contract = await getContract();
+  const tx = await contract.toggleTodo(index);
+  console.log("log contract from toggle",tx);
+  await tx.wait();
+}
