@@ -1,16 +1,8 @@
-import React from 'react';
 import TodoItem from './TodoItem';
 import './TodoList.css';
 
 const TodoList = ({ todos, onToggle, loading }) => {
-  if (loading) {
-    return (
-      <div className="todo-list-empty">
-        <div className="spinner"></div>
-        <p>Loading tasks from blockchain...</p>
-      </div>
-    );
-  }
+ 
 
   if (!todos || todos.length === 0) {
     return (
@@ -43,9 +35,7 @@ const TodoList = ({ todos, onToggle, loading }) => {
           <TodoItem 
             key={index} 
             todo={todo} 
-            // In smart contract original index matters so we pass the real index back if we map it
-            // Since we sorted, we should find the original index.
-            // Wait, we can add originalIndex to the objects.
+            loading={loading}
             index={todos.findIndex(t => t === todo)} 
             onToggle={onToggle} 
           />

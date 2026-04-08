@@ -1,12 +1,11 @@
-import React from 'react';
 import './TodoItem.css';
 
-const TodoItem = ({ todo, index, onToggle }) => {
+const TodoItem = ({ todo, index, onToggle,loading }) => {
   return (
-    <div className={`todo-item ${todo.completed ? 'completed' : ''}`}>
+    <div className={`todo-item ${todo.completed ? 'completed' : ''} ${loading ? 'disabled' : ''}`}>
       <div 
         className="todo-checkbox" 
-        onClick={() => onToggle && onToggle(index)}
+        onClick={() => !loading && onToggle && onToggle(index)}
       >
         {todo.completed && (
           <svg className="check-icon" fill="currentColor" viewBox="0 0 20 20">

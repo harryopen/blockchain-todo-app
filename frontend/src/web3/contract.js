@@ -4,7 +4,7 @@ import { contractABI, contractAddress } from "../utils/constant";
 export const getContract = async () => {
   if (!window.ethereum) throw new Error("Install MetaMask");
 
-  // 🔥 Force BNB Testnet
+  // Force BNB Testnet
   await window.ethereum.request({
     method: "wallet_switchEthereumChain",
     params: [{ chainId: "0x61" }],
@@ -27,6 +27,7 @@ export const addTodo = async (text) => {
 // Get Todos
 export const getTodos = async () => {
   const contract = await getContract();
+  console.log("log contract from getTodos",contract);
   return await contract.getTodos();
 };
 

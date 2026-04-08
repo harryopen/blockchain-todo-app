@@ -10,6 +10,10 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   gap: 16px;
 }
+.disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 .todo-item:hover {
   transform: translateY(-2px);
@@ -30,7 +34,9 @@
   flex-shrink: 0;
   background-color: var(--bg-input);
 }
-
+.todo-item.disabled .todo-checkbox{
+  cursor: not-allowed;
+}
 .todo-checkbox:hover {
   border-color: var(--accent);
 }

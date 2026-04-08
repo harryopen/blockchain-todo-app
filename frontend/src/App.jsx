@@ -55,6 +55,7 @@ const App = () => {
 
   const handleAdd = async (text) => {
     setAdding(true);
+    setLoading(true);
     try {
       await addTodo(text);
       await loadTodos();
@@ -115,7 +116,7 @@ const App = () => {
         <TodoList 
           todos={todos} 
           onToggle={handleToggle}
-          loading={loading && todos.length === 0} 
+          loading={loading} 
         />
       </main>
     </div>
